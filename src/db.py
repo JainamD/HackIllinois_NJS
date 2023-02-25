@@ -2,7 +2,6 @@ import sqlite3
 
 conn = sqlite3.connect('potential_sidequests.db')
 
-# test
 # Create Table Method (Only excecute to create a fresh table)
 def create_table():
     # if table exists, replaces it
@@ -99,13 +98,14 @@ def search_quests_mood(M):
     conn.close()
     return(rows)
 
-'''
+# Search SideQuest (Return randomly based on time duration grouping)
+# maybe in a range??
 def search_quests_time(D):
     conn = sqlite3.connect('potential_sidequests.db')
 
     # get all the rows where mood is true
     cursor = conn.cursor()
-    s = "SELECT * FROM sidequests WHERE {} = 1".format(M)
+    s = "SELECT * FROM sidequests WHERE D <= {}".format(D)
     cursor.execute(s)
 
     rows = cursor.fetchall()
@@ -113,7 +113,7 @@ def search_quests_time(D):
     conn.commit()
     conn.close()
     return(rows)
-'''
+
 
 # RUNNING STUFF
 create_table()
