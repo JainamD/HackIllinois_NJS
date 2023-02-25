@@ -2,6 +2,7 @@ import sqlite3
 
 conn = sqlite3.connect('potential_sidequests.db')
 
+# test
 # Create Table Method (Only excecute to create a fresh table)
 def create_table():
     # if table exists, replaces it
