@@ -1,11 +1,12 @@
 import sqlite3
 class db:
-    def __init__(self):
-        self.conn = sqlite3.connect('potential_sidequests.db')
+    def __init__(self, name):
+        self.name = name
 
     # Create Table Method (Only excecute to create a fresh table)
     def create_table(self):
         # if table exists, replaces it
+        conn = sqlite3.connect('potential_sidequests.db')
         cursor = conn.cursor()
         cursor.execute("DROP TABLE IF EXISTS sidequests")
 
@@ -52,8 +53,9 @@ class db:
         conn.close()
 
     # update quest
+    
     def update_quest(self, N, col, update):
-        conn = sqlite3.connect('potential_sidequests.db')
+        #conn = sqlite3.connect('potential_sidequests.db')
 
         #
         s = 'SELECT * FROM sidequests WHERE Name = {}'.format(N)
@@ -106,7 +108,7 @@ class db:
 
         # get all the rows where mood is true
         cursor = conn.cursor()
-        s = "SELECT * FROM sidequests WHERE D <= {}".format(D)
+        s = "SELECT * FROM sidequests WHERE Minutes <= {}".format(D)
         cursor.execute(s)
 
         rows = cursor.fetchall()
@@ -116,11 +118,4 @@ class db:
         return(rows)
 
 
-    # RUNNING STUFF
-    create_table()
-
-    add_quest('"Clean Closet"', '"Organize everything in my closet"', 0, 0, 0, 1, 1, 0, 40, 0)
-    add_quest('"Make a Dessert"', '"Find a recipe online on youtube and make it"', 1, 1, 0, 1, 1, 1, 20, 0)
-    add_quest('"Call my friends"', '"Reach out to my highschool friends"', 1, 1, 1, 0, 1, 0, 60, 0)
-    add_quest('"Go to Taco Bell"', '"Get food so J does not kill me"', 0, 0, 0, 0, 0, 1, 45, 0)
 
