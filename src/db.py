@@ -8,11 +8,12 @@ class db:
         # if table exists, replaces it
         conn = sqlite3.connect('potential_sidequests.db')
         cursor = conn.cursor()
-        cursor.execute("DROP TABLE IF EXISTS sidequests")
+        s = "DROP TABLE IF EXISTS sidequests_{}".format(self.name)
+        cursor.execute(s)
 
         # Create a table with the desired columns of TABLE not DATABASE(this is for you nishka)
-        conn.execute('''CREATE TABLE sidequests
-                    (id INTEGER PRIMARY KEY,
+        s = 'CREATE TABLE sidequests_{}'.format(self.name)
+        s += '''(id INTEGER PRIMARY KEY,
                     Name TEXT NOT NULL,
                     Description TEXT NOT NULL,
                     Happy INT NOT NULL,
@@ -22,7 +23,8 @@ class db:
                     Bored INT NOT NULL,
                     Hungry INT NOT NULL,
                     Minutes INT NOT NULL,
-                    Finished INT NOT NULL);''')
+                    Finished INT NOT NULL);'''
+        conn.execute(s)
 
         # Commit changes and close the connection
         conn.commit()
@@ -34,7 +36,7 @@ class db:
 
         # Check Name is not taken
         cursor = conn.cursor()
-        s = 'SELECT COUNT(*) FROM sidequests WHERE Name = {}'.format(N)
+        s = 'SELECT COUNT(*) FROM sidequests_{} WHERE Name = {}'.format(self.name, N)
         cursor.execute(s)
         count = cursor.fetchone()[0]
 
@@ -44,7 +46,8 @@ class db:
             return('Name taken')
 
         # Insert data into the table
-        s = 'INSERT INTO sidequests (Name, Description, Happy, Sad, Tired, Motivated, Bored, Hungry, Minutes, Finished) '
+        s = 'INSERT INTO sidequests_{}'.format(self.name)
+        s += ' (Name, Description, Happy, Sad, Tired, Motivated, Bored, Hungry, Minutes, Finished) '
         s += "VALUES ({}, {}, {}, {}, {}, {}, {}, {}, {}, {})".format(N, D, Ha, S, T, M, B, Hn, Mins, Fin)
         conn.execute(s)
 
@@ -58,7 +61,7 @@ class db:
         #conn = sqlite3.connect('potential_sidequests.db')
 
         #
-        s = 'SELECT * FROM sidequests WHERE Name = {}'.format(N)
+        s = 'SELECT * FROM sidequests_{} WHERE Name = {}'.format(self.name, N)
 
 
 
@@ -69,7 +72,7 @@ class db:
         conn = sqlite3.connect('potential_sidequests.db')
 
         # Delete based on Name
-        s = 'DELETE FROM sidequests WHERE Name = "{}"'.format(N)
+        s = 'DELETE FROM sidequests_{} WHERE Name = "{}"'.format(self.name, N)
         conn.execute(s)
         #print('yea u got here')
         conn.commit()
@@ -80,7 +83,7 @@ class db:
         conn = sqlite3.connect('potential_sidequests.db')
 
         # Delete based on Duration
-        s = 'DELETE FROM sidequests WHERE Minutes >= {}'.format(D)
+        s = 'DELETE FROM sidequests_{} WHERE Minutes >= {}'.format(self.name, D)
         conn.execute(s)
 
         conn.commit()
@@ -92,7 +95,7 @@ class db:
 
         # get all the rows where mood is true
         cursor = conn.cursor()
-        s = "SELECT * FROM sidequests WHERE {} = 1".format(M)
+        s = "SELECT * FROM sidequests_{} WHERE {} = 1".format(self.name, M)
         cursor.execute(s)
 
         rows = cursor.fetchall()
@@ -108,7 +111,7 @@ class db:
 
         # get all the rows where mood is true
         cursor = conn.cursor()
-        s = "SELECT * FROM sidequests WHERE Minutes <= {}".format(D)
+        s = "SELECT * FROM sidequests_{} WHERE Minutes <= {}".format(self.name, D)
         cursor.execute(s)
 
         rows = cursor.fetchall()
