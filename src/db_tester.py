@@ -12,7 +12,9 @@ person.add_quest('"Call my friends"', '"Reach out to my highschool friends"', 1,
 person.add_quest('"Go to Taco Bell"', '"Get food so J does not kill me"', 0, 0, 0, 0, 0, 1, 45, 0)
 
 
-rows = person.search_quests_time(40)
+person.update_quest('"Go to Taco Bell"', 'Happy', '1')
+
+rows = person.search_quests_time(100)
 print("Here are all the tasks that have a time less than or equal to 40")
 for row in rows:
     print(row)

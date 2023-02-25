@@ -58,12 +58,15 @@ class db:
     # update quest
     
     def update_quest(self, N, col, update):
-        #conn = sqlite3.connect('potential_sidequests.db')
+        conn = sqlite3.connect('potential_sidequests.db')
 
-        #
-        s = 'SELECT * FROM sidequests_{} WHERE Name = {}'.format(self.name, N)
+        # Update a row in a table
+        s = 'UPDATE sidequests_{} SET {} = {} WHERE Name = {}'.format(self.name, col, update, N)
+        conn.execute(s)
 
-
+        # Commit changes and close the connection
+        conn.commit()
+        conn.close()
 
 
     # Delete Side Quest (For testing purposes, user will NOT have this functionality)
@@ -74,7 +77,8 @@ class db:
         # Delete based on Name
         s = 'DELETE FROM sidequests_{} WHERE Name = "{}"'.format(self.name, N)
         conn.execute(s)
-        #print('yea u got here')
+        
+        # Commit changes and close the connection
         conn.commit()
         conn.close()
 
@@ -86,6 +90,7 @@ class db:
         s = 'DELETE FROM sidequests_{} WHERE Minutes >= {}'.format(self.name, D)
         conn.execute(s)
 
+        c# Commit changes and close the connection
         conn.commit()
         conn.close()
 
@@ -100,6 +105,7 @@ class db:
 
         rows = cursor.fetchall()
         
+        # Commit changes and close the connection
         conn.commit()
         conn.close()
         return(rows)
@@ -116,6 +122,7 @@ class db:
 
         rows = cursor.fetchall()
         
+        # Commit changes and close the connection
         conn.commit()
         conn.close()
         return(rows)
