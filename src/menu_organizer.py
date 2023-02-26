@@ -9,12 +9,20 @@ conn = sqlite3.connect('example.db')
 
 
 # Define a route that creates a new user
-@app.route('/dbs', methods=['POST'])
-def create_db():
-    name = request.json['name']
-    new_user = db(name)
-    new_user.create_table()
-    return jsonify({'db': db}), 201
+@app.route('/register', methods=['POST'])
+def create_user():
+    if request.method == 'POST':
+        user = request.json['user']
+        new_user = db()
+        conn = sqlite3.connect('potential_sidequests.db')
+        cursor = conn.cursor()
+        s = "INSERT INTO users VALUES ('{}')".format(user) 
+        cursor.execute(s)
+        con.commit()
+        con.close()
+        
+        user = {'user': user}
+        return jsonify(user)
 
 '''
 # Update an existing db
