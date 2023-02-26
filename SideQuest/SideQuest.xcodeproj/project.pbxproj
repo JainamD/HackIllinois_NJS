@@ -16,6 +16,7 @@
 		7385E66729A9F5810044BD82 /* SideQuestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7385E66629A9F5810044BD82 /* SideQuestUITestsLaunchTests.swift */; };
 		7385E67629AAE4D90044BD82 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7385E67529AAE4D90044BD82 /* RegisterView.swift */; };
 		7385E68029AAEEF10044BD82 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7385E67F29AAEEF10044BD82 /* LoginView.swift */; };
+		7385E68229AAF6730044BD82 /* InsertQuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7385E68129AAF6730044BD82 /* InsertQuestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		7385E66629A9F5810044BD82 /* SideQuestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideQuestUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7385E67529AAE4D90044BD82 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		7385E67F29AAEEF10044BD82 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7385E68129AAF6730044BD82 /* InsertQuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertQuestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +103,10 @@
 				7385E64929A9F5800044BD82 /* SideQuestApp.swift */,
 				7385E64B29A9F5800044BD82 /* ContentView.swift */,
 				7385E67529AAE4D90044BD82 /* RegisterView.swift */,
+				7385E67F29AAEEF10044BD82 /* LoginView.swift */,
+				7385E68129AAF6730044BD82 /* InsertQuestView.swift */,
 				7385E64D29A9F5810044BD82 /* Assets.xcassets */,
 				7385E64F29A9F5810044BD82 /* Preview Content */,
-				7385E67F29AAEEF10044BD82 /* LoginView.swift */,
 			);
 			path = SideQuest;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			files = (
 				7385E67629AAE4D90044BD82 /* RegisterView.swift in Sources */,
 				7385E64C29A9F5800044BD82 /* ContentView.swift in Sources */,
+				7385E68229AAF6730044BD82 /* InsertQuestView.swift in Sources */,
 				7385E68029AAEEF10044BD82 /* LoginView.swift in Sources */,
 				7385E64A29A9F5800044BD82 /* SideQuestApp.swift in Sources */,
 			);
