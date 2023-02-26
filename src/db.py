@@ -2,7 +2,8 @@ import sqlite3
 
 # class that represents the data you want to expose through the AP
 class db:
-    def __init__(self, name):
+    def __init__(self):
+        pass
 
     # Create Table Method (Only excecute to create a fresh table)
     def create_tables(self):
@@ -12,8 +13,8 @@ class db:
         s = "DROP TABLE IF EXISTS sidequests"
         cursor.execute(s)
         s = "DROP TABLE IF EXISTS users"
-        cursor.execute(s
-        )
+        cursor.execute(s)
+        
         # Create a table with the desired columns of TABLE not DATABASE(this is for you nishka)
         s = 'CREATE TABLE sidequests'
         s += '''(id INTEGER PRIMARY KEY,
@@ -29,7 +30,7 @@ class db:
                     Finished INT NOT NULL,
                     Username TEXT NOT NULL);'''
         conn.execute(s)
-        s = 'CREATE TABLE uesrs (name TEXT PRIMARY KEY)'
+        s = 'CREATE TABLE users (name TEXT PRIMARY KEY)'
         conn.execute(s)
 
         # Commit changes and close the connection
@@ -52,22 +53,20 @@ class db:
             return('Name taken')
 
         # Insert data into the table
-        s = 'INSERT INTO sidequests_{}'.format(self.name)
-        s += ' (Name, Description, Happy, Sad, Tired, Motivated, Bored, Hungry, Minutes, Finished, Username) '
-        s += "VALUES ({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {})".format(N, D, Ha, S, T, M, B, Hn, Mins, Fin, user)
+        s = 'INSERT INTO sidequests (Name, Description, Happy, Sad, Tired, Motivated, Bored, Hungry, Minutes, Finished, Username) '
+        s += 'VALUES ({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {})'.format(N, D, Ha, S, T, M, B, Hn, Mins, Fin, user)
         conn.execute(s)
 
         # Commit changes and close the connection
         conn.commit()
         conn.close()
 
-    # update quest
-    
-    def update_quest(self, N, col, update):
+    # Update Side Quest
+    def update_quest(self, N, col, update, user):
         conn = sqlite3.connect('potential_sidequests.db')
 
-        # Update a row in a table
-        s = 'UPDATE sidequests_{} SET {} = {} WHERE Name = {}'.format(self.name, col, update, N)
+        # Update a row in THE table
+        s = 'UPDATE sidequests SET {} = {} WHERE Name = {} AND Username = {}'.format(col, update, N, user)
         conn.execute(s)
 
         # Commit changes and close the connection
@@ -77,11 +76,11 @@ class db:
 
     # Delete Side Quest (For testing purposes, user will NOT have this functionality)
     # delete a command given name
-    def delete_quest_name(self, N):    
+    def delete_quest_name(self, N, user):    
         conn = sqlite3.connect('potential_sidequests.db')
 
         # Delete based on Name
-        s = 'DELETE FROM sidequests_{} WHERE Name = "{}"'.format(self.name, N)
+        s = 'DELETE FROM sidequests WHERE Name = "{}" AND Username = {}'.format(N, user)
         conn.execute(s)
         
         # Commit changes and close the connection
@@ -89,11 +88,11 @@ class db:
         conn.close()
 
     # Delete any command higher than given duration
-    def delete_quest_duration(self, D):
+    def delete_quest_duration(self, D, user):
         conn = sqlite3.connect('potential_sidequests.db')
 
         # Delete based on Duration
-        s = 'DELETE FROM sidequests_{} WHERE Minutes >= {}'.format(self.name, D)
+        s = 'DELETE FROM sidequests WHERE Minutes >= {} AND Username = {}'.format(D, user)
         conn.execute(s)
 
         c# Commit changes and close the connection
@@ -101,12 +100,12 @@ class db:
         conn.close()
 
     # Search SideQuest (Return randomly based on mood grouping)
-    def search_quests_mood(self, M):
+    def search_quests_mood(self, M, user):
         conn = sqlite3.connect('potential_sidequests.db')
 
         # get all the rows where mood is true
         cursor = conn.cursor()
-        s = "SELECT * FROM sidequests_{} WHERE {} = 1".format(self.name, M)
+        s = "SELECT * FROM sidequests WHERE {} = 1 AND Username = {}".format(M, user)
         cursor.execute(s)
 
         rows = cursor.fetchall()
@@ -118,12 +117,12 @@ class db:
 
     # Search SideQuest (Return randomly based on time duration grouping)
     # maybe in a range??
-    def search_quests_time(self, D):
+    def search_quests_time(self, D, user):
         conn = sqlite3.connect('potential_sidequests.db')
 
         # get all the rows where mood is true
         cursor = conn.cursor()
-        s = "SELECT * FROM sidequests_{} WHERE Minutes <= {}".format(self.name, D)
+        s = "SELECT * FROM sidequests WHERE Minutes <= {} AND Username = {}".format(D, user)
         cursor.execute(s)
 
         rows = cursor.fetchall()
@@ -132,6 +131,7 @@ class db:
         conn.commit()
         conn.close()
         return(rows)
+
 
 
 
