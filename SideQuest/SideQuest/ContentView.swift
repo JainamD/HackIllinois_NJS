@@ -2,39 +2,51 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var register: Bool = false
+    @State private var login: Bool = false
     
     var body: some View {
-        VStack {
-            Text("Welcome to \nSide Quest!")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.bottom, 30)
-            Image("logo")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 200, height: 200)
-                .padding(.bottom, 30)
-            Button("Register") {
-                        self.register = true
-                    }.sheet(isPresented: $register, content: {
-                        RegisterView()
-                    })
-           // NavigationLink(destination: MainMenuView()) {
-//                Button(action: {
-//                    start = true
-//                }) {
-//                    Text("Start")
-//                        .font(.title)
-//                        .fontWeight(.bold)
-//                        .padding(.horizontal, 50)
-//                        .padding(.vertical, 15)
-//                        .foregroundColor(.white)
-//                        .background(Color.blue)
-//                        .cornerRadius(10)
-//                }
-           // }
+        ZStack {
+            Image("sidequestbackground") // replace "your-background-image-name" with your actual image name
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .edgesIgnoringSafeArea(.all)
+            VStack {
+//                Text("Welcome to \nSide Quest!")
+//                    .font(.largeTitle)
+//                    .fontWeight(.bold)
+//                    .padding(.bottom, 30)
+                Image("sidequestlogo2")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 400, height: 400)
+                    .padding(.bottom, 30)
+                Button("Login") {
+                    self.login = true
+                }.font(.title)
+                    .fontWeight(.bold)
+                    .padding(.horizontal, 50)
+                    .padding(.vertical, 15)
+                    .foregroundColor(.white)
+                    .background(Color.green)
+                    .cornerRadius(10)
+                    .sheet(isPresented: $login, content: {
+                    LoginView()
+                })
+                Button("Register") {
+                    self.register = true
+                }.font(.title)
+                    .fontWeight(.bold)
+                    .padding(.horizontal, 50)
+                    .padding(.vertical, 15)
+                    .foregroundColor(.white)
+                    .background(Color.green)
+                    .cornerRadius(10)
+                    .sheet(isPresented: $register, content: {
+                    RegisterView()
+                })
+            }
+            .padding(.top, 100)
         }
-        .padding(.top, 100)
     }
 }
 
