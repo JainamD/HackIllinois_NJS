@@ -45,7 +45,7 @@ class db:
 
         # Check Name is not taken
         cursor = conn.cursor()
-        s = 'SELECT COUNT(*) FROM sidequests WHERE Name = {} AND Username = {}'.format(N, user)
+        s = "SELECT COUNT(*) FROM sidequests WHERE Name = '{}' AND Username = '{}'".format(N, user)
         cursor.execute(s)
         count = cursor.fetchone()[0]
 
@@ -54,10 +54,11 @@ class db:
             #print('NAME TAKEN BISH')
             return('Name taken')
 
+        #(Name, Description, Happy, Sad, Tired, Motivated, Bored, Hungry, Minutes, Finished, Username) 
         # Insert data into the table
-        s = 'INSERT INTO sidequests (Name, Description, Happy, Sad, Tired, Motivated, Bored, Hungry, Minutes, Finished, Username) '
-        s += 'VALUES ({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {})'.format(N, D, Ha, S, T, M, B, Hn, Mins, Fin, user)
-        conn.execute(s)
+        s = 'INSERT INTO sidequests '
+        s += "VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(N, D, Ha, S, T, M, B, Hn, Mins, Fin, user)
+        cursor.execute(s)
 
         # Commit changes and close the connection
         conn.commit()

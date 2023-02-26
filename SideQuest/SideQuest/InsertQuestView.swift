@@ -34,22 +34,20 @@ struct InsertQuestView: View {
     @State var username: String
     
     @State private var isPresentingModal = false
-    @State private var questName = ""
-    @State private var questDescription = ""
+    @State private var questName: String = ""
+    @State private var questDescription: String = ""
     @State private var quests: [Quest] = []
     
-    @State private var isHappy = false
-    @State private var isSad = false
-    @State private var isTired = false
-    @State private var isMotivated = false
-    @State private var isBored = false
-    @State private var isHungry = false
+    @State private var isHappy: Bool = false
+    @State private var isSad: Bool = false
+    @State private var isTired: Bool = false
+    @State private var isMotivated: Bool = false
+    @State private var isBored: Bool = false
+    @State private var isHungry: Bool = false
     
     let minutes = Array(stride(from: 5, to: 61, by: 5))
     @State private var selectedMinuteIndex = 0
-    
-    @State private var selectedNumber = 0
-    
+        
     var body: some View {
         VStack {
             Button(action: {
@@ -167,9 +165,12 @@ struct InsertQuestView: View {
               "finish": 0,
               "user": username
           ]
+        
+        print(requestBody)
 
         var request = URLRequest(url: endpointUrl)
         request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         // Encode the quest data in the request body
         do {
@@ -182,19 +183,22 @@ struct InsertQuestView: View {
         // Send the request to the server
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                print("Error sending request:", error)
+                print("Error sending request: \(error.localizedDescription)")
                 return
             }
-            
-            guard let httpResponse = response as? HTTPURLResponse else {
-                print("Unexpected response:", response ?? "nil")
-                return
-            }
-            
-            if httpResponse.statusCode == 200 {
-                print("Quest created successfully!")
+            if let response = response as? HTTPURLResponse {
+                if let responseData = data, let responseString = String(data: responseData, encoding: .utf8) {
+                    print("Server response: \(response.statusCode)\n\(responseString)")
+                } else {
+                    print("Empty response from server")
+                }
+                if response.statusCode != 200 {
+                    print("Failed to create quest. HTTP status code: \(response.statusCode)")
+                } else {
+                    print("Quest created successfully!")
+                }
             } else {
-                print("Failed to create quest. HTTP status code:", httpResponse.statusCode)
+                print("Invalid response from server")
             }
         }
         task.resume()
