@@ -72,6 +72,29 @@ def login_user():
         return jsonify(ret_value)
         #return jsonify("")
 
+@app.route('/add', methods=['POST'])
+def login_user():
+    #f = open("temp", "w")
+    #f.write("Successful test connection!\n")
+
+    if request.method == 'POST':
+        name = request.json['name']
+        desc = request.json['desc']
+        happy = request.json['happy']
+        sad = request.json['sad']
+        tired = request.json['tired']
+        motv = request.json['motv']
+        bored = request.json['bored']
+        hungy = request.json['hungy']
+        mins = request.json['mins']
+        finish = request.json['finish']
+        user = request.json['user']
+        #f.write("got here!\n")
+
+        inst = db()
+        inst.add_quest(name, desc, happy, sad, tired, motv, bored, hungy, mins, finish, user)
+        ret = {'name': name}
+        return jsonify(ret)
 '''
 # Update an existing db
 @app.route('/dbs/<string:name>', methods=['PUT'])
