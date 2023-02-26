@@ -84,7 +84,7 @@ def add_quest():
         #f.write("got here!\n")
 
         inst = db()
-        inst.add_quest(name, desc, happy, sad, tired, motv, bored, hungy, mins, "0" ,user)
+        inst.add_quest(name, desc, happy, sad, tired, motv, bored, hungy, mins, finish ,user)
         ret = {'name': name}
         return jsonify(ret)
     

@@ -1,3 +1,5 @@
+import binascii
+import os
 import random
 import sqlite3
 
@@ -19,7 +21,7 @@ class db:
         
         # Create a table with the desired columns of TABLE not DATABASE(this is for you nishka)
         s = 'CREATE TABLE sidequests'
-        s += '''(id INTEGER PRIMARY KEY,
+        s += '''(id TEXT PRIMARY KEY,
                     Name TEXT NOT NULL,
                     Description TEXT NOT NULL,
                     Happy INT NOT NULL,
@@ -56,8 +58,10 @@ class db:
 
         #(Name, Description, Happy, Sad, Tired, Motivated, Bored, Hungry, Minutes, Finished, Username) 
         # Insert data into the table
+        random_bytes = os.urandom(4)
+        random_id = binascii.hexlify(random_bytes).decode()
         s = 'INSERT INTO sidequests '
-        s += "VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(N, D, Ha, S, T, M, B, Hn, Mins, Fin, user)
+        s += "VALUES ('{}','{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(random_id, str(N), str(D), int(Ha), int(S), int(T), int(M), int(B), int(Hn), int(Mins), int(Fin), str(user))
         cursor.execute(s)
 
         # Commit changes and close the connection
