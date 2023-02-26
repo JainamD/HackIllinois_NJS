@@ -22,7 +22,7 @@ struct LoginView: View {
                 .cornerRadius(5.0)
                 .padding(.bottom, 20)
             Button(action: {
-                // Handle registration logic here
+                // Handle login logic here
             }) {
                 Text("Login")
                     .font(.headline)
