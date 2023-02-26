@@ -50,10 +50,14 @@ def login_user():
 
         conn = sqlite3.connect('potential_sidequests.db')
         cursor = conn.cursor()
-        inst = db()
-        s = "SELECT COUNT(*) FROM users WHERE name = {}".format(user) 
+        # s = "SELECT * FROM users"
+        # cursor.execute(s)
+        # rows = cursor.fetchall()
+        # print(rows)
+        s = "SELECT COUNT(*) FROM users WHERE name = '{}'".format(user) 
         cursor.execute(s)
         count = cursor.fetchone()[0]
+        print(count)
         ret = ""
         if count == 0:
             ret = "USERNAME NOT VALID OR ENTERED INCORRECTLY"
@@ -66,6 +70,7 @@ def login_user():
         
         ret_value = {'prompt': ret}
         return jsonify(ret_value)
+        #return jsonify("")
 
 '''
 # Update an existing db
