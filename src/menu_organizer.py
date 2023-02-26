@@ -37,6 +37,35 @@ def create_user():
         
         user = {'user': user}
         return jsonify(user)
+    
+    # Define a route that creates a new user
+@app.route('/login', methods=['POST'])
+def login_user():
+    #f = open("temp", "w")
+    #f.write("Successful test connection!\n")
+
+    if request.method == 'POST':
+        user = request.json['user']
+        #f.write("got here!\n")
+
+        conn = sqlite3.connect('potential_sidequests.db')
+        cursor = conn.cursor()
+        inst = db()
+        s = "SELECT COUNT(*) FROM users WHERE name = {}".format(user) 
+        cursor.execute(s)
+        count = cursor.fetchone()[0]
+        ret = ""
+        if count == 0:
+            ret = "USERNAME NOT VALID OR ENTERED INCORRECTLY"
+        else:
+            ret = "USERNAME IS VALID, LOGGING IN NOW!"
+        conn.commit()
+        conn.close()
+        #f.write("also got here!\n")
+        #f.close()
+        
+        ret_value = {'prompt': ret}
+        return jsonify(ret_value)
 
 '''
 # Update an existing db
