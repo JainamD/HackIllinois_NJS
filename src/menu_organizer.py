@@ -46,14 +46,9 @@ def login_user():
 
     if request.method == 'POST':
         user = request.json['user']
-        #f.write("got here!\n")
 
         conn = sqlite3.connect('potential_sidequests.db')
         cursor = conn.cursor()
-        # s = "SELECT * FROM users"
-        # cursor.execute(s)
-        # rows = cursor.fetchall()
-        # print(rows)
         s = "SELECT COUNT(*) FROM users WHERE name = '{}'".format(user) 
         cursor.execute(s)
         count = cursor.fetchone()[0]
@@ -65,14 +60,11 @@ def login_user():
             ret = "USERNAME IS VALID, LOGGING IN NOW!"
         conn.commit()
         conn.close()
-        #f.write("also got here!\n")
-        #f.close()
         
         ret_value = {'prompt': ret}
         return jsonify(ret_value)
-        #return jsonify("")
 
-@app.route('/add', methods=['POST'])
+@app.route('/add_quest', methods=['POST'])
 def login_user():
     #f = open("temp", "w")
     #f.write("Successful test connection!\n")

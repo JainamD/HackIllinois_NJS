@@ -73,6 +73,9 @@ struct LoginView: View {
                 // Handle the response data
                 let jsonDecoder = JSONDecoder()
                 let responseDict = try? jsonDecoder.decode([String: String].self, from: data)
+                NavigationLink(destination: InsertQuestView(username: username)) {
+                    Text("Create a quest")
+                }
                 print("Response: ", responseDict)
             }
         }
