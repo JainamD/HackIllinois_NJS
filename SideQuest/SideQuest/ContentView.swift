@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selection: String? = nil
+    @State private var register: Bool = false
     
     var body: some View {
         VStack {
@@ -14,20 +14,25 @@ struct ContentView: View {
                 .scaledToFit()
                 .frame(width: 200, height: 200)
                 .padding(.bottom, 30)
-            NavigationLink(destination: MainMenuView(), tag: "mainMenu", selection: $selection) {
-                Button(action: {
-                    self.selection = "mainMenu"
-                }) {
-                    Text("Start")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .padding(.horizontal, 50)
-                        .padding(.vertical, 15)
-                        .foregroundColor(.white)
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                }
-            }
+            Button("Register") {
+                        self.register = true
+                    }.sheet(isPresented: $register, content: {
+                        RegisterView()
+                    })
+           // NavigationLink(destination: MainMenuView()) {
+//                Button(action: {
+//                    start = true
+//                }) {
+//                    Text("Start")
+//                        .font(.title)
+//                        .fontWeight(.bold)
+//                        .padding(.horizontal, 50)
+//                        .padding(.vertical, 15)
+//                        .foregroundColor(.white)
+//                        .background(Color.blue)
+//                        .cornerRadius(10)
+//                }
+           // }
         }
         .padding(.top, 100)
     }
