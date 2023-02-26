@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @State private var register: Bool = false
     @State private var login: Bool = false
+    @State var username: String
     
     var body: some View {
         ZStack {
@@ -50,7 +51,7 @@ struct HomeView: View {
                     .background(Color.green)
                     .cornerRadius(10)
                     .sheet(isPresented: $register, content: {
-                    RegisterView()
+                    InsertQuestView(username: username)
                 })
                 Button("How to use") {
                     self.register = true
@@ -72,6 +73,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(username:"")
     }
 }

@@ -84,7 +84,6 @@ struct RegisterView: View {
                 let jsonDecoder = JSONDecoder()
                 let responseDict = try? jsonDecoder.decode([String: String].self, from: data)
                 print("Response: ", responseDict)
-                InsertQuestView(username: username)
             }
         }
         task.resume()

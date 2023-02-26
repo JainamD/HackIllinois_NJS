@@ -65,7 +65,7 @@ def login_user():
         return jsonify(ret_value)
 
 @app.route('/add_quest', methods=['POST'])
-def login_user():
+def add_quest():
     #f = open("temp", "w")
     #f.write("Successful test connection!\n")
 
@@ -89,7 +89,7 @@ def login_user():
         return jsonify(ret)
     
 @app.route('/get_random_quest', methods=['GET'])
-def add_quest():
+def rand_quest():
     #f = open("temp", "w")
     #f.write("Successful test connection!\n")
 

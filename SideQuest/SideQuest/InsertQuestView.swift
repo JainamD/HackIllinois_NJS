@@ -154,30 +154,50 @@ struct InsertQuestView: View {
         let endpointUrl = URL(string: "http://localhost:8081/add_quest")!
 
         // Define the request body
-//        let requestBody = ["user": $username]
-//        print(requestBody)
-//
-//        // Serialize the request body to JSON data
-//        let jsonEncoder = JSONEncoder()
-//        let requestData = try? jsonEncoder.encode(requestBody)
-//
-//        // Create the request object
-//        var request = URLRequest(url: endpointUrl)
-//        request.httpMethod = "POST"
-//        request.httpBody = requestData
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//
-//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            if let error = error {
-//                print("Error:",error)
-//            } else if let data = data {
-//                // Handle the response data
-//                let jsonDecoder = JSONDecoder()
-//                let responseDict = try? jsonDecoder.decode([String: String].self, from: data)
-//                print("Response: ", responseDict)
-//            }
-//        }
-//        task.resume()
+        let requestBody: [String: Any] = [
+              "name": questName,
+              "desc": questDescription,
+              "happy": isHappy,
+              "sad": isSad,
+              "tired": isTired,
+              "motv": isMotivated,
+              "bored": isBored,
+              "hungy": isHungry,
+              "mins": 5*($selectedMinuteIndex.wrappedValue+1),
+              "finish": 0,
+              "user": username
+          ]
+
+        var request = URLRequest(url: endpointUrl)
+        request.httpMethod = "POST"
+        
+        // Encode the quest data in the request body
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
+        } catch let error {
+            print("Failed to encode quest data:", error)
+            return
+        }
+        
+        // Send the request to the server
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error sending request:", error)
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                print("Unexpected response:", response ?? "nil")
+                return
+            }
+            
+            if httpResponse.statusCode == 200 {
+                print("Quest created successfully!")
+            } else {
+                print("Failed to create quest. HTTP status code:", httpResponse.statusCode)
+            }
+        }
+        task.resume()
     }
 }
 
