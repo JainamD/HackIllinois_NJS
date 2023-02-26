@@ -64,13 +64,8 @@ def login_user():
         ret_value = {'prompt': ret}
         return jsonify(ret_value)
 
-<<<<<<< Updated upstream
 @app.route('/add_quest', methods=['POST'])
 def login_user():
-=======
-@app.route('/add', methods=['POST'])
-def add_quest():
->>>>>>> Stashed changes
     #f = open("temp", "w")
     #f.write("Successful test connection!\n")
 
