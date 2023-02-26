@@ -28,7 +28,7 @@ struct HomeView: View {
                     .frame(width: 200, height: 400)
                     .padding(.bottom, 20)
                     .padding(.top, -450)
-                Button("Recieve Quest") {
+                Button("Receive Quest") {
                     self.login = true
                 }.font(.title)
                     .fontWeight(.bold)
