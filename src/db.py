@@ -147,9 +147,10 @@ class db:
         ids = cursor.fetchall()
         rand = random.choice(ids)
         c_id = rand[0]
-        s = "SELECT * FROM sidequests WHERE id = {}".format(c_id)
+        s = "SELECT * FROM sidequests WHERE id = '{}'".format(c_id)
         cursor.execute(s)
         return cursor.fetchone()
+
 
 
 
