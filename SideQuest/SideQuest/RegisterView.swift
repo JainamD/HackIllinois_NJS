@@ -23,6 +23,23 @@ struct RegisterView: View {
                 .padding(.bottom, 20)
             Button(action: {
                 // Handle registration logic here
+                guard let url = URL(string: "http://localhost:5000/register") else { return }
+                
+                var request = URLRequest(url: url)
+                request.httpMethod = "POST"
+                
+                let jsonPayload = [
+                    "username": username,
+                ]
+                
+                guard let jsonData = try? JSONSerialization.data(withJSONObject: jsonPayload) else { return }
+                                
+                request.httpBody = jsonData
+                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                                
+                URLSession.shared.dataTask(with: request) { data, response, error in
+                    // Handle the API response here
+                }.resume()
             }) {
                 Text("Register")
                     .font(.headline)

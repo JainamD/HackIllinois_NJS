@@ -14,8 +14,8 @@
 		7385E65B29A9F5810044BD82 /* SideQuestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7385E65A29A9F5810044BD82 /* SideQuestTests.swift */; };
 		7385E66529A9F5810044BD82 /* SideQuestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7385E66429A9F5810044BD82 /* SideQuestUITests.swift */; };
 		7385E66729A9F5810044BD82 /* SideQuestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7385E66629A9F5810044BD82 /* SideQuestUITestsLaunchTests.swift */; };
-		7385E67429A9FA220044BD82 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7385E67329A9FA220044BD82 /* MainMenuView.swift */; };
 		7385E67629AAE4D90044BD82 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7385E67529AAE4D90044BD82 /* RegisterView.swift */; };
+		7385E68029AAEEF10044BD82 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7385E67F29AAEEF10044BD82 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +46,8 @@
 		7385E66029A9F5810044BD82 /* SideQuestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SideQuestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7385E66429A9F5810044BD82 /* SideQuestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideQuestUITests.swift; sourceTree = "<group>"; };
 		7385E66629A9F5810044BD82 /* SideQuestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideQuestUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		7385E67329A9FA220044BD82 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		7385E67529AAE4D90044BD82 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		7385E67F29AAEEF10044BD82 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,10 +100,10 @@
 			children = (
 				7385E64929A9F5800044BD82 /* SideQuestApp.swift */,
 				7385E64B29A9F5800044BD82 /* ContentView.swift */,
+				7385E67529AAE4D90044BD82 /* RegisterView.swift */,
 				7385E64D29A9F5810044BD82 /* Assets.xcassets */,
 				7385E64F29A9F5810044BD82 /* Preview Content */,
-				7385E67329A9FA220044BD82 /* MainMenuView.swift */,
-				7385E67529AAE4D90044BD82 /* RegisterView.swift */,
+				7385E67F29AAEEF10044BD82 /* LoginView.swift */,
 			);
 			path = SideQuest;
 			sourceTree = "<group>";
@@ -263,9 +263,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7385E67429A9FA220044BD82 /* MainMenuView.swift in Sources */,
 				7385E67629AAE4D90044BD82 /* RegisterView.swift in Sources */,
 				7385E64C29A9F5800044BD82 /* ContentView.swift in Sources */,
+				7385E68029AAEEF10044BD82 /* LoginView.swift in Sources */,
 				7385E64A29A9F5800044BD82 /* SideQuestApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
