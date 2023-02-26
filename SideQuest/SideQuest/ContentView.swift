@@ -5,7 +5,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text("Side Quest")
+            Text("Welcome to \nSide Quest!")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding(.bottom, 30)
