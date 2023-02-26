@@ -6,15 +6,17 @@ class db:
         self.name = name
 
     # Create Table Method (Only excecute to create a fresh table)
-    def create_table(self):
+    def create_tables(self):
         # if table exists, replaces it
         conn = sqlite3.connect('potential_sidequests.db')
         cursor = conn.cursor()
-        s = "DROP TABLE IF EXISTS sidequests_{}".format(self.name)
+        s = "DROP TABLE IF EXISTS sidequests"
         cursor.execute(s)
-
+        s = "DROP TABLE IF EXISTS users"
+        cursor.execute(s
+        )
         # Create a table with the desired columns of TABLE not DATABASE(this is for you nishka)
-        s = 'CREATE TABLE sidequests_{}'.format(self.name)
+        s = 'CREATE TABLE sidequests'
         s += '''(id INTEGER PRIMARY KEY,
                     Name TEXT NOT NULL,
                     Description TEXT NOT NULL,
@@ -26,6 +28,8 @@ class db:
                     Hungry INT NOT NULL,
                     Minutes INT NOT NULL,
                     Finished INT NOT NULL);'''
+        conn.execute(s)
+        s = 'CREATE TABLE uesrs (name TEXT PRIMARY KEY)'
         conn.execute(s)
 
         # Commit changes and close the connection
