@@ -1,4 +1,6 @@
+import random
 import sqlite3
+
 
 # class that represents the data you want to expose through the AP
 class db:
@@ -131,6 +133,18 @@ class db:
         conn.commit()
         conn.close()
         return(rows)
+    
+    def get_random_quest(self, user):
+        conn = sqlite3.connect('potential_sidequests.db')
+        cursor = conn.cursor()
+        s = "SELECT id FROM sidequests WHERE Username = '{}'".format(user)
+        cursor.execute(s)
+        ids = cursor.fetchall()
+        rand = random.choice(ids)
+        c_id = rand[0]
+        s = "SELECT * FROM sidequests WHERE id = {}".format(c_id)
+        cursor.execute(s)
+        return cursor.fetchone()
 
 
 

@@ -84,8 +84,20 @@ def login_user():
         #f.write("got here!\n")
 
         inst = db()
-        inst.add_quest(name, desc, happy, sad, tired, motv, bored, hungy, mins, finish, user)
+        inst.add_quest(name, desc, happy, sad, tired, motv, bored, hungy, mins, "0" ,user)
         ret = {'name': name}
+        return jsonify(ret)
+    
+@app.route('/get_random_quest', methods=['GET'])
+def add_quest():
+    #f = open("temp", "w")
+    #f.write("Successful test connection!\n")
+
+    if request.method == 'GET':
+        user = request.json['user']
+        inst = db(user)
+        rand = inst.get_random_quest()
+        ret = {'name': rand[1], 'desc': rand[2], 'happy': rand[3], 'sad': rand[4], 'tired': rand[5], 'motv': rand[6], 'bored': rand[7], 'hungy': rand[8], 'time': rand[9], 'finished': rand[10], 'user': rand[11]}
         return jsonify(ret)
 '''
 # Update an existing db
