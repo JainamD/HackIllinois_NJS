@@ -5,21 +5,35 @@ import sqlite3
 app = Flask(__name__)
 
 # Create a connection to the SQLite database
-conn = sqlite3.connect('example.db')
+conn = sqlite3.connect('potential_sidequests.db')
+
+# Define a route that creates a new user
+# @app.route('/print', methods=['POST'])
+# def test_connect():
+#     f = open("temp", "w")
+#     f.close()
+#     return jsonify("")
+
 
 
 # Define a route that creates a new user
 @app.route('/register', methods=['POST'])
 def create_user():
+    #f = open("temp", "w")
+    #f.write("Successful test connection!\n")
+
     if request.method == 'POST':
         user = request.json['user']
-        new_user = db()
+        #f.write("got here!\n")
+
         conn = sqlite3.connect('potential_sidequests.db')
         cursor = conn.cursor()
         s = "INSERT INTO users VALUES ('{}')".format(user) 
         cursor.execute(s)
-        con.commit()
-        con.close()
+        conn.commit()
+        conn.close()
+        #f.write("also got here!\n")
+        #f.close()
         
         user = {'user': user}
         return jsonify(user)
@@ -73,4 +87,4 @@ def get_db(name):
 conn.close()
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="localhost", port=8081, debug=True)

@@ -95,7 +95,7 @@ class db:
         s = 'DELETE FROM sidequests WHERE Minutes >= {} AND Username = {}'.format(D, user)
         conn.execute(s)
 
-        c# Commit changes and close the connection
+        # Commit changes and close the connection
         conn.commit()
         conn.close()
 
