@@ -1,4 +1,6 @@
 import sqlite3
+
+# class that represents the data you want to expose through the AP
 class db:
     def __init__(self, name):
         self.name = name
