@@ -11,30 +11,41 @@ struct LoginView: View {
     @State private var username: String = ""
     
     var body: some View {
-        VStack {
-            Text("Login")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.bottom, 30)
-            TextField("Username", text: $username)
-                .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(5.0)
-                .padding(.bottom, 20)
-            Button(action: {
-                // Handle login logic here
-                loginUser()
-            }) {
-                Text("Login")
-                    .font(.headline)
+        ZStack {
+            Image("leafy_bg") // replace "your-background-image-name" with your actual image name
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .edgesIgnoringSafeArea(.all)
+            VStack {
+                Text("Log into your Account")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding(.bottom, 30)
                     .foregroundColor(.white)
+                TextField("Username", text: $username)
                     .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
+                    .background(Color.brown.opacity(0.8))
                     .cornerRadius(5.0)
+                    .padding(.bottom, 20)
+                    .frame(width: 250)
+                    .accentColor(.white)
+                    .fontWeight(.bold)
+                Button(action: {
+                    // Handle login logic here
+                    loginUser()
+                }) {
+                    Text("Resume Questing")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding(.horizontal, 50)
+                        .padding(.vertical, 15)
+                        .foregroundColor(.white)
+                        .background(Color.green)
+                        .cornerRadius(10)
+                }
             }
+            .padding()
         }
-        .padding()
     }
     
     func loginUser() {

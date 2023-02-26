@@ -14,30 +14,48 @@ struct RegisterView: View {
     @State private var errorMessage = ""
 
     var body: some View {
-        VStack {
-            Text("Sign up")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.bottom, 30)
-            TextField("Username", text: $username)
-                .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(5.0)
-                .padding(.bottom, 20)
-            Button(action: {
-                // Handle registration logic here
-                registerUser()
-            }) {
-                Text("Register")
-                    .font(.headline)
+        ZStack {
+            Image("wood_grain") // replace "your-background-image-name" with your actual image name
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .edgesIgnoringSafeArea(.all)
+            VStack {
+                Text("Create my account")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding(.top, 20)
+                    .padding(.bottom, 30)
                     .foregroundColor(.white)
+
+                TextField("My Unique Username", text: $username)
                     .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
+                    .background(Color.green.opacity(0.2))
                     .cornerRadius(5.0)
+                    .padding(.bottom, 20)
+                    .frame(width: 250)
+                    .accentColor(.white)
+                    .fontWeight(.bold)
+                    
+
+                Button(action: {
+                    // Handle registration logic here
+                    registerUser()
+                }) {
+                    Text("Start Questing")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding(.horizontal, 50)
+                        .padding(.vertical, 15)
+                        .foregroundColor(.white)
+                        .background(Color.green)
+                        .cornerRadius(10)
+                    
+                }
             }
+            //.background(Color.brown.opacity(0.9))
+            //.overlay(RoundedRectangle(cornerRadius: 5.0).stroke(Color.white, lineWidth: 3))
+            .padding()
         }
-        .padding()
     }
     
     func registerUser() {
